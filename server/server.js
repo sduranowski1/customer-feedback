@@ -3,6 +3,8 @@ import { dirname } from 'path';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from "dotenv";
+import path from "path"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,10 +23,16 @@ app.use(cors());
 const CONNECTION_URL =
   'mongodb+srv://surveydeeppixel:survey123@cluster0.jrcoivo.mongodb.net/?retryWrites=true&w=majority'
 
-mongoose.connect(CONNECTION_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+  mongoose
+  .connect(
+      process.env.MONGODB_CONNECTION_STRING,
+          {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+          }
+  )
+  .then(() => console.log("MongoDB has been connected"))
+  .catch((err) => console.log(err));
 
 const answerSchema = {
   answer1: String,
@@ -127,8 +135,24 @@ app.get("/card", (req, res) => {
 });
 
 
+
+dotenv.config();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+
+
 // Heroku automatically sets a Port that can be accessed via process.env.PORT. Setting a port yourself would crash your app.
 // https://dev.to/lawrence_eagles/causes-of-heroku-h10-app-crashed-error-and-how-to-solve-them-3jnl#:~:text=This%20error%20is%20thrown%20if,App%20crashed%20error%20code%20message
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 5000, function () {
   console.log(`server is running on ${process.env.PORT}`);
 });
