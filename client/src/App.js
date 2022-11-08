@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
 import axios, { Axios } from "axios";
-import ReactPaginate from 'react-paginate'
 
 export default function App({ setOpenModal}) {
 
