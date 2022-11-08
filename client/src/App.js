@@ -23,7 +23,7 @@ export default function App({ setOpenModal}) {
 
 	
 
-	const apiUrl = 'http://localhost:3000'
+	const apiUrl = 'http://localhost:5000'
 
 
 	useEffect(() => {
