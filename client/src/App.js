@@ -22,7 +22,7 @@ export default function App({ setOpenModal}) {
 
 	
 
-	const apiUrl = 'http://localhost:5000'
+	const apiUrl = 'https://surveyyyy.herokuapp.com'
 
 
 	useEffect(() => {
