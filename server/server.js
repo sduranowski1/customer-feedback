@@ -153,6 +153,6 @@ if (process.env.NODE_ENV === "production") {
 
 // Heroku automatically sets a Port that can be accessed via process.env.PORT. Setting a port yourself would crash your app.
 // https://dev.to/lawrence_eagles/causes-of-heroku-h10-app-crashed-error-and-how-to-solve-them-3jnl#:~:text=This%20error%20is%20thrown%20if,App%20crashed%20error%20code%20message
-app.listen(process.env.NODE_ENV || 5000, function () {
+app.listen(process.env.PORT || 5000, function () {
   console.log(`server is running on ${process.env.PORT}`);
 });
