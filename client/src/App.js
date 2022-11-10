@@ -106,7 +106,7 @@ export default function App({ setOpenModal}) {
 
 	
 
-	const url = "http://localhost:3000/answer"
+	const url = "https://surveyyyy.herokuapp.com/answer"
 	let friends1 = {
 		answer1: friends[0],
 		answer2: friends[1],
