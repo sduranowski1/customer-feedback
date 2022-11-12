@@ -20,8 +20,6 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-const CONNECTION_URL =
-  'mongodb+srv://surveydeeppixel:survey123@cluster0.jrcoivo.mongodb.net/?retryWrites=true&w=majority'
 
   mongoose
   .connect(
